@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generador de Perfiles y Chat IA</title>
+    <link rel="stylesheet" href="estilos.css">
+</head>
+<body>
+
+    <div id="app">
+        <header class="navbar">
+            <h1 class="brand">Generador de Perfiles UI Reactiva</h1>
+            <nav id="main-nav">
+                <button id="nav-create" class="nav-link active">Crear Perfil</button>
+                <button id="nav-chat" class="nav-link">Chat IA</button>
+            </nav>
+        </header>
+
+        <main id="router-view">
+            
+            <!-- VISTA 1: CREAR PERFIL -->
+            <div id="view-create" class="view-module active">
+                <div class="view-create-profile">
+                    
+                    <!-- PANEL IZQUIERDO -->
+                    <section class="form-container">
+                        <h2>Diseña tu Perfil</h2>
+                        <p class="form-description">
+                            Personaliza tu tarjeta manualmente o importa los datos públicos de una cuenta de GitHub. Al guardar, pasarás a platicar con la IA.
+                        </p>
+
+                        <form id="profile-form">
+                            <!-- API DE GITHUB -->
+                            <div class="api-search-block">
+                                <label for="github-search">Autocompletar desde GitHub</label>
+                                <div class="input-group-row">
+                                    <input type="text" id="github-search" placeholder="Usuario (Ej. octocat)" autocomplete="off">
+                                    <button type="button" id="btn-fetch" class="btn-secondary">Buscar</button>
+                                </div>
+                                <span id="api-status" class="status-msg"></span>
+                            </div>
+
+                            <hr>
+
+                            <!-- AVATARES -->
+                            <div class="input-group">
+                                <label>Elige un Avatar</label>
+                                <div id="avatar-selector" class="avatar-grid"></div>
+                            </div>
+
+                            <!-- NOMBRE -->
+                            <div class="input-group">
+                                <label for="input-name">Nombre a mostrar</label>
+                                <input type="text" id="input-name" placeholder="Tu Nombre" required>
+                            </div>
+
+                            <!-- BIOGRAFÍA -->
+                            <div class="input-group">
+                                <label for="input-bio">Biografía</label>
+                                <textarea id="input-bio" rows="3" placeholder="Cuéntanos sobre ti..."></textarea>
+                            </div>
+
+                            <!-- COLOR -->
+                            <div class="input-group">
+                                <label for="input-color">Color de acento</label>
+                                <input type="color" id="input-color" value="#3b82f6">
+                            </div>
+
+                            <!-- GUARDAR -->
+                            <button type="submit" class="btn-primary">Guardar Tarjeta e Ir al Chat</button>
+                            <span id="save-status" class="status-msg"></span>
+                        </form>
+                    </section>
+
+                    <!-- PANEL DERECHO -->
+                    <section class="card-container">
+                        <h2 class="preview-title">Vista previa</h2>
+                        <article id="profile-card" class="card">
+                            <div class="card-header" id="preview-header"></div>
+                            <img id="avatar-preview" src="src/assets/Avatares0.png" alt="Avatar del perfil" class="avatar">
+                            <div class="card-body">
+                                <h3 id="name-preview">Nombre Apellido</h3>
+                                <p id="bio-preview">La biografía aparecerá aquí...</p>
+                            </div>
+                        </article>
+                    </section>
+
+                </div>
+            </div>
+
+            <!-- VISTA 2: CHAT IA -->
+            <div id="view-chat" class="view-module">
+                <div class="chat-container">
+                    <div class="chat-header">
+                        <h2>🤖 Asistente Virtual</h2>
+                        <p>Modo de chat activado para: <strong id="chat-user-name">Usuario</strong></p>
+                    </div>
+                    
+                    <div id="chat-messages" class="chat-messages">
+                        <div class="message msg-ai">
+                            ¡Hola! Guarda tu perfil primero para que podamos empezar a platicar.
+                        </div>
+                    </div>
+                    
+                    <form id="chat-form" class="chat-input-area">
+                        <input type="text" id="chat-input" placeholder="Escribe un mensaje..." autocomplete="off" disabled>
+                        <button type="submit" id="btn-send-chat" class="btn-primary" disabled>Enviar</button>
+                    </form>
+                </div>
+            </div>
+
+        </main>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
